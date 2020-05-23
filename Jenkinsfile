@@ -23,6 +23,10 @@ stage('Remove Existing Container'){
 stage ('Runing Container to test built Docker Image'){
     powershell "docker run -dit --name ${container} -p 80:81 ${imagename}"
     }
+
+stage ('Runing docker-compose'){
+    powershell "docker-compose up"
+    }
     
 stage('Tag Docker Image'){
     powershell "docker tag ${imagename} ${env.dockeruser}/ubuntu:16.04"
