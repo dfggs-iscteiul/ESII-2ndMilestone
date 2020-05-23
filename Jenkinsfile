@@ -1,6 +1,6 @@
-def dockeruser = "40404040"
+def dockeruser = "dfggs"
 def imagename = "ubuntu:16"
-def container = "apache2"
+def container = "2ndMilestoneContainer"
 node {
    echo 'Building Apache Docker Image'
 
@@ -21,7 +21,7 @@ stage('Remove Existing Container'){
     }
     
 stage ('Runing Container to test built Docker Image'){
-    powershell "docker run -dit --name ${container} -p 80:80 ${imagename}"
+    powershell "docker run -dit --name ${container} -p 80:81 ${imagename}"
     }
     
 stage('Tag Docker Image'){
