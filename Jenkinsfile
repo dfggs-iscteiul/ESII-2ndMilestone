@@ -25,7 +25,7 @@ stage ('Runing Container to test built Docker Image'){
     }
 
 stage ('Runing docker-compose'){
-    sh "docker-compose up -d"
+    powershell "docker-compose up -d"
     }
     
 stage('Tag Docker Image'){
