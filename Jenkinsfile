@@ -13,11 +13,11 @@ stage('Build Docker Imagae'){
     }
     
 stage('Stop Existing Container'){
-     powershell "docker stop ${container} || true"
+     powershell "docker stop ${container}"
     }
     
 stage('Remove Existing Container'){
-     powershell "docker rm ${container} || true"
+     powershell "docker rm ${container}"
     }
     
 stage ('Runing Container to test built Docker Image'){
