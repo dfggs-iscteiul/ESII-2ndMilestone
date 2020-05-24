@@ -8,10 +8,3 @@ RUN apt-get update && apt-get install apache2 -y
 EXPOSE 80
 # Command to run Apache server in background
 CMD /usr/sbin/apache2ctl -D FOREGROUND
-
-#JAVA
-FROM openjdk:7
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
-RUN javac Main.java
-CMD ["java", "Main"]
