@@ -38,6 +38,10 @@ stage('Tag Docker Image'){
     powershell "docker tag ${imagename} ${env.dockeruser}/ubuntu:16.04"
     }
 
+stage('Change wp-content permissions'){
+    powershell "RUN chmod -R  755 ./Wordpress/wp-content"
+    }
+
 stage('Docker Login and Push Image'){
     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
     powershell "docker login -u ${dockeruser} -p ${dockerpasswd}"
