@@ -1,6 +1,6 @@
 def dockeruser = "dfggs"
 def imagename = "ubuntu:16"
-def container = "2ndMilestoneContainer - Ubuntu"
+def container = "2ndMilestoneContainer-Ubuntu"
 node {
    echo 'Building Apache Docker Image'
 
@@ -13,14 +13,14 @@ stage('Build Ubuntu&Java Docker Image'){
     }
 
 stage('Stop Existing Containers'){
-     powershell "if [ [ $(docker ps | grep '2ndMilestoneContainer - Ubuntu' | wc -l) -gt 0 ] ]; then docker stop ${container} fi"
+     powershell "if [ [ $(docker ps | grep 2ndMilestoneContainer-Ubuntu | wc -l) -gt 0 ] ]; then docker stop ${container} fi"
      powershell "if [ [ $(docker ps | grep 'mysql' | wc -l) -gt 0 ] ]; then docker stop ${mysql} fi"
      powershell "if [ [ $(docker ps | grep 'phpmyadmin' | wc -l) -gt 0 ] ]; then docker stop ${phpmyadmin} fi"
      powershell "if [ [ $(docker ps | grep 'wordpress' | wc -l) -gt 0 ] ]; then docker stop ${wordpress} fi"
     }
     
 stage('Remove Existing Containers'){
-     ppowershell "if [ [ $(docker ps | grep '2ndMilestoneContainer - Ubuntu' | wc -l) -gt 0 ] ]; then docker rm ${container} fi"
+     ppowershell "if [ [ $(docker ps | grep 2ndMilestoneContainer-Ubuntu | wc -l) -gt 0 ] ]; then docker rm ${container} fi"
      powershell "if [ [ $(docker ps | grep 'mysql' | wc -l) -gt 0 ] ]; then docker rm ${mysql} fi"
      powershell "if [ [ $(docker ps | grep 'phpmyadmin' | wc -l) -gt 0 ] ]; then docker rm ${phpmyadmin} fi"
      powershell "if [ [ $(docker ps | grep 'wordpress' | wc -l) -gt 0 ] ]; then docker rm ${wordpress} fi"
