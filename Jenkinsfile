@@ -13,17 +13,17 @@ stage('Build Ubuntu&Java Docker Image'){
     }
 
 stage('Stop Existing Containers'){
-     powershell "docker stop ${container}"
-     powershell "docker stop ${mysql}"
-     powershell "docker stop ${phpmyadmin}"
-     powershell "docker stop ${wordpress}"
+     powershell "docker stop ${container} || true"
+     powershell "docker stop ${mysql} || true"
+     powershell "docker stop ${phpmyadmin} || true"
+     powershell "docker stop ${wordpress} || true"
     }
     
 stage('Remove Existing Containers'){
-     powershell "docker rm ${container}"
-     powershell "docker rm ${mysql}"
-     powershell "docker rm ${phpmyadmin}"
-     powershell "docker rm ${wordpress}"
+     powershell "docker rm ${container} || true"
+     powershell "docker rm ${mysql} || true"
+     powershell "docker rm ${phpmyadmin} || true"
+     powershell "docker rm ${wordpress} || true"
     }
 
 stage ('Runing docker-compose for remaining services'){
