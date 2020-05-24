@@ -9,4 +9,3 @@ EXPOSE 80
 # Command to run Apache server in background
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
-
