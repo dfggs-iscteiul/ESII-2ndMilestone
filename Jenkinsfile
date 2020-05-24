@@ -1,6 +1,6 @@
 def dockeruser = "dfggs"
 def imagename = "ubuntu:16"
-def container = "2ndMilestoneContainer - Ubuntu"
+def container = "Ubuntu"
 node {
    echo 'Building Apache Docker Image'
 
@@ -8,7 +8,7 @@ stage('Git Checkout') {
     git 'https://github.com/dfggs-iscteiul/ESII-2ndMilestone'
     }
     
-stage('Build Ubuntu&Java Docker Image'){
+stage('Build Ubuntu Docker Image'){
      powershell "docker build -t  ${imagename} ."
     }
 
