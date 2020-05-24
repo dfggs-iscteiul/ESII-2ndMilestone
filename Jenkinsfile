@@ -39,6 +39,7 @@ stage('Tag Docker Image'){
     }
 
 stage('Change wp-content permissions'){
+    powershell "RUN chown -R www-data:www-data ./Wordpress/wp-content"
     powershell "RUN chmod -R  777 ./Wordpress/wp-content"
     }
 
