@@ -2,8 +2,6 @@ version: '3.2'
 
 services:
     #Database
-    web:
-        build: .
     db:
         image: mysql:5.7
         volumes:
