@@ -1,6 +1,6 @@
 def dockeruser = "dfggs"
 def imagename = "ubuntu:16"
-def container = "2ndMilestoneContainer"
+def container = "2ndMilestoneContainer - Ubuntu"
 node {
    echo 'Building Apache Docker Image'
 
@@ -12,18 +12,24 @@ stage('Build Ubuntu&Java Docker Image'){
      powershell "docker build -t  ${imagename} ."
     }
 
+stage('Stop Existing Containers'){
+     powershell "docker stop ${container}"
+     powershell "docker stop ${mysql}"
+     powershell "docker stop ${phpmyadmin}"
+     powershell "docker stop ${wordpress}"
+    }
+    
+stage('Remove Existing Containers'){
+     powershell "docker rm ${container}"
+     powershell "docker rm ${mysql}"
+     powershell "docker rm ${phpmyadmin}"
+     powershell "docker rm ${wordpress}"
+    }
+
 stage ('Runing docker-compose for remaining services'){
     powershell "docker-compose up -d"
-    }   
+    }
 
-stage('Stop Existing Container'){
-     powershell "docker stop ${container}"
-    }
-    
-stage('Remove Existing Container'){
-     powershell "docker rm ${container}"
-    }
-    
 stage ('Runing Container to test built Docker Image'){
     powershell "docker run -dit --name ${container} -p 80:81 ${imagename}"
     }
