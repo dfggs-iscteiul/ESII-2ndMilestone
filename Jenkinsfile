@@ -11,7 +11,11 @@ stage('Git Checkout') {
 stage('Build Docker Imagae'){
      powershell "docker build -t  ${imagename} ."
     }
-    
+
+stage ('Runing docker-compose'){
+    powershell "docker-compose up -d"
+    }   
+
 stage('Stop Existing Container'){
      powershell "docker stop ${container}"
     }
@@ -22,10 +26,6 @@ stage('Remove Existing Container'){
     
 stage ('Runing Container to test built Docker Image'){
     powershell "docker run -dit --name ${container} -p 80:81 ${imagename}"
-    }
-
-stage ('Runing docker-compose'){
-    powershell "docker-compose up -d"
     }
     
 stage('Tag Docker Image'){
