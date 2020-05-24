@@ -14,24 +14,24 @@ stage('Build Ubuntu Docker Image'){
 
 stage('Stop Existing Containers'){
      powershell "docker stop ${container}"
-     powershell "docker stop ${mysql}"
-     powershell "docker stop ${phpmyadmin}"
-     powershell "docker stop ${wordpress}"
+     powershell "docker stop mysql"
+     powershell "docker stop phpmyadmin"
+     powershell "docker stop wordpress"
     }
     
 stage('Remove Existing Containers'){
      powershell "docker rm ${container}"
-     powershell "docker rm ${mysql}"
-     powershell "docker rm ${phpmyadmin}"
-     powershell "docker rm ${wordpress}"
-    }
-
-stage ('Runing docker-compose for remaining services'){
-    powershell "docker-compose up -d"
+     powershell "docker rm mysql"
+     powershell "docker rm phpmyadmin"
+     powershell "docker rm wordpress"
     }
 
 stage ('Runing Container to test built Docker Image'){
     powershell "docker run -dit --name ${container} -p 80:81 ${imagename}"
+    }
+
+stage ('Runing docker-compose for remaining services'){
+    powershell "docker-compose up -d"
     }
     
 stage('Tag Docker Image'){
